@@ -1,0 +1,14 @@
+{
+  "built_at": "2026-04-19T20:30:32.860Z",
+  "total_chunks": 17,
+  "embedding_dim": 1024,
+  "areas": [
+    {
+      "id": "01-CP-Simulation",
+      "title": "Investigating carbide characteristics effect on multiscale mechanical behavior of AISI 420 steel using crystal plasticity simulation",
+      "status": "published",
+      "period": "2022-2023",
+      "file": "01-CP-Simulation.md"
+    }
+  ]
+}

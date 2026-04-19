@@ -1,0 +1,51 @@
+# Cloudflare Worker configuration for the PhD Agent proxy.
+#
+# Setup (one-time):
+#   1. npm install -g wrangler
+#   2. wrangler login
+#   3. Create a KV namespace:
+#        wrangler kv namespace create "KV"
+#      Paste the returned id into the [[kv_namespaces]] section below.
+#   4. Put your DashScope key as a secret (never commit):
+#        wrangler secret put DASHSCOPE_API_KEY
+#   5. Deploy:
+#        wrangler deploy
+#
+# Local dev:
+#   wrangler dev
+
+name = "phd-agent-proxy"
+main = "index.ts"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Workers.dev subdomain is free (https://phd-agent-proxy.<your-subdomain>.workers.dev).
+# If you later bind a custom domain, add a [[routes]] block.
+workers_dev = true
+
+[vars]
+# Monthly token circuit breaker. Hard stops when reached.
+# 2M tokens ≈ $2 on qwen-plus (approx).
+MAX_MONTHLY_TOKENS = "2000000"
+
+# Per-IP rate limits
+IP_LIMIT_PER_DAY = "30"
+IP_LIMIT_PER_MINUTE = "5"
+
+# CORS whitelist (comma-separated)
+ALLOWED_ORIGINS = "https://kegulu.github.io,http://localhost:5173"
+
+# DashScope configuration (Singapore region)
+DASHSCOPE_BASE_URL = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+MODEL_CHAT = "qwen-plus"
+MODEL_EMBED = "text-embedding-v3"
+EMBED_DIMENSIONS = "1024"
+
+# --- KV namespace for rate limits + token counters ------------------
+# After running `wrangler kv namespace create "KV"`, paste the id here.
+[[kv_namespaces]]
+binding = "KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# --- Secrets (set via `wrangler secret put`, not committed) ---------
+# DASHSCOPE_API_KEY
