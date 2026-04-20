@@ -30,7 +30,7 @@ export const SITE = {
   siteUrl: 'https://kegulu.github.io',
 
   // Chat / agent backend
-  chatApiUrl: import.meta.env.VITE_CHAT_API_URL || 'https://phd-agent.YOUR_CF_SUBDOMAIN.workers.dev/api/chat',
+  chatApiUrl: import.meta.env.VITE_CHAT_API_URL || 'https://phd-agent-proxy.lukegusw35.workers.dev/api/chat',
 
   // About the agent — displayed on the chat page
   agentDescription: `This agent has been trained on the contents of Kegu's published papers, research notes, and public GitHub code. It retrieves relevant passages from these sources and uses them to answer questions about the research. Ask it about methods, results, code, or comparisons to prior work.`,
