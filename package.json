@@ -22,7 +22,7 @@
     "rehype-katex": "^7.0.1",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
-    "remark-math": "^6.0.0""katex": "^0.16.11",
+    "remark-math": "^6.0.0",
     "highlight.js": "^11.10.0",
     "gray-matter": "^4.0.3"
   },
