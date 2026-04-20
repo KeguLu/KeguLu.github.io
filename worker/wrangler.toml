@@ -45,7 +45,7 @@ EMBED_DIMENSIONS = "1024"
 # After running `wrangler kv namespace create "KV"`, paste the id here.
 [[kv_namespaces]]
 binding = "KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "30c3512fb7e44f7da08529606c321d4a"
 
 # --- Secrets (set via `wrangler secret put`, not committed) ---------
 # DASHSCOPE_API_KEY
