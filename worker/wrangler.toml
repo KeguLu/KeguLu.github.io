@@ -37,7 +37,7 @@ ALLOWED_ORIGINS = "https://kegulu.github.io,http://localhost:5173"
 
 # DashScope configuration (Singapore region)
 DASHSCOPE_BASE_URL = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
-MODEL_CHAT = "qwen-plus"
+MODEL_CHAT = "qwen-flash"
 MODEL_EMBED = "text-embedding-v3"
 EMBED_DIMENSIONS = "1024"
 

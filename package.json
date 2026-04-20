@@ -11,22 +11,23 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.10.0",
+    "katex": "^0.16.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.27.0",
     "react-markdown": "^9.0.1",
-    "remark-gfm": "^4.0.0",
-    "remark-math": "^6.0.0",
-    "rehype-katex": "^7.0.1",
+    "react-router-dom": "^6.27.0",
     "rehype-highlight": "^7.0.1",
-    "katex": "^0.16.11",
-    "highlight.js": "^11.10.0",
-    "gray-matter": "^4.0.3"
+    "rehype-katex": "^7.0.1",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
+    "@types/node": "^22.7.5",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
-    "@types/node": "^22.7.5",
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
