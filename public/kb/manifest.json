@@ -1,8 +1,15 @@
 {
-  "built_at": "2026-05-03T18:25:16.087Z",
-  "total_chunks": 29,
+  "built_at": "2026-05-03T19:16:03.626Z",
+  "total_chunks": 39,
   "embedding_dim": 1024,
   "areas": [
+    {
+      "id": "area-01",
+      "title": "FEM-Based Multistage Forming Design for Amplified Annealing-Induced Shape Change in AISI 420 Sheet",
+      "status": "published",
+      "period": "2023-2025",
+      "file": "01-FEM-Design-Demonstrator.md"
+    },
     {
       "id": "02-CP-Simulation",
       "title": "Investigating carbide characteristics effect on multiscale mechanical behavior of AISI 420 steel using crystal plasticity simulation",
