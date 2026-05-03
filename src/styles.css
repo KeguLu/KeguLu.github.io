@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Global base styles
+   ============================================================ */
+@layer base {
+  :root {
+    --color-paper: #FAF8F5;
+    --color-ink: #1A1A1A;
+    --color-rule: #E8E4DC;
+    --color-accent: #7A1F2B;
+  }
+
+  html {
+    font-feature-settings: 'kern', 'liga', 'calt', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-variant-numeric: oldstyle-nums;
+  }
+
+  ::selection {
+    background-color: #1A1A1A;
+    color: #FAF8F5;
+  }
+
+  /* Thin, elegant scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D4CFC3;
+    border-radius: 10px;
+    border: 2px solid var(--color-paper);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9A9A9A;
+  }
+
+  a {
+    @apply text-ink underline decoration-ink/25 underline-offset-[3px] decoration-1 transition-colors;
+  }
+  a:hover {
+    @apply text-accent decoration-accent;
+  }
+
+  code {
+    font-feature-settings: 'calt', 'liga' off;
+  }
+}
+
+/* ============================================================
+   Prose: the heart of research-area pages
+   ============================================================ */
+@layer components {
+  .prose-academic {
+    @apply text-ink;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+  }
+
+  .prose-academic h1 {
+    @apply font-display font-normal text-4xl tracking-tightest mb-8 mt-2;
+  }
+
+  .prose-academic h2 {
+    @apply font-display font-normal text-3xl tracking-tight mt-14 mb-5 pb-2;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .prose-academic h3 {
+    @apply font-display font-medium text-xl mt-10 mb-3;
+  }
+
+  .prose-academic h4 {
+    @apply font-sans font-semibold text-base uppercase tracking-ultra-wide mt-8 mb-2 text-ink-muted;
+  }
+
+  .prose-academic p {
+    @apply mb-5;
+  }
+
+  .prose-academic strong {
+    @apply font-semibold text-ink;
+  }
+
+  .prose-academic em {
+    @apply italic;
+  }
+
+  .prose-academic ul {
+    @apply my-5 pl-6 space-y-2;
+    list-style: none;
+  }
+
+  .prose-academic ul > li {
+    @apply relative pl-3;
+  }
+
+  .prose-academic ul > li::before {
+    content: '—';
+    @apply absolute left-0 text-ink-faint;
+    top: 0;
+  }
+
+  .prose-academic ol {
+    @apply my-5 pl-6 space-y-2 list-decimal;
+  }
+
+  .prose-academic a {
+    @apply text-ink underline decoration-ink/30 underline-offset-[3px];
+  }
+  .prose-academic a:hover {
+    @apply text-accent decoration-accent;
+  }
+
+  .prose-academic blockquote {
+    @apply my-6 pl-6 italic text-ink-muted font-display;
+    border-left: 2px solid var(--color-accent);
+  }
+
+  /* Inline code */
+  .prose-academic :not(pre) > code {
+    @apply font-mono text-[0.875em] px-1.5 py-0.5 rounded-sm;
+    background: #F1EDE4;
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  /* Code block */
+  .prose-academic pre {
+    @apply my-6 p-5 rounded-sm overflow-x-auto font-mono text-sm;
+    background: #2A2823;
+    color: #E8E4DC;
+    line-height: 1.65;
+  }
+  .prose-academic pre code {
+    background: transparent !important;
+    color: inherit !important;
+    padding: 0 !important;
+    font-size: inherit;
+  }
+
+  /* Horizontal rule */
+  .prose-academic hr {
+    @apply my-12 border-0 h-px;
+    background: linear-gradient(to right, transparent, var(--color-rule) 20%, var(--color-rule) 80%, transparent);
+  }
+
+  /* Tables */
+  .prose-academic table {
+    @apply my-6 w-full text-sm;
+    border-collapse: collapse;
+  }
+  .prose-academic th {
+    @apply text-left font-semibold px-3 py-2 uppercase tracking-wide text-xs text-ink-muted;
+    border-bottom: 2px solid var(--color-ink);
+  }
+  .prose-academic td {
+    @apply px-3 py-2.5;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  /* KaTeX: ensure inline math aligns with prose; block math breathes */
+  .prose-academic .katex {
+    font-size: 1.05em;
+  }
+  .prose-academic .katex-display {
+    @apply my-6 overflow-x-auto overflow-y-hidden py-2;
+  }
+
+  /* Highlight.js: GitHub-light-inspired but toned to our palette */
+  .prose-academic pre code.hljs { color: #E8E4DC; }
+  .prose-academic .hljs-keyword,
+  .prose-academic .hljs-built_in { color: #D8A657; }
+  .prose-academic .hljs-string { color: #A9B665; }
+  .prose-academic .hljs-number,
+  .prose-academic .hljs-literal { color: #D3869B; }
+  .prose-academic .hljs-comment { color: #928374; font-style: italic; }
+  .prose-academic .hljs-function,
+  .prose-academic .hljs-title { color: #7DAEA3; }
+  .prose-academic .hljs-params { color: #E8E4DC; }
+  .prose-academic .hljs-variable,
+  .prose-academic .hljs-attr { color: #E8E4DC; }
+  .prose-academic .hljs-operator { color: #EA6962; }
+}
+
+/* ============================================================
+   Utility classes
+   ============================================================ */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .hairline-top {
+    border-top: 1px solid var(--color-rule);
+  }
+  .hairline-bottom {
+    border-bottom: 1px solid var(--color-rule);
+  }
+}
+/* ============================================================
+   Citation markers in agent responses
+   ============================================================ */
+.citation {
+  font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.68em;
+  color: var(--color-accent);
+  padding: 0 0.1em;
+  vertical-align: super;
+  line-height: 0;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: help;
+}
+
+.citation::before { content: ""; }
+.citation::after { content: ""; }

@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+worker/node_modules/
+
+# Build output
+dist/
+
+# Wrangler (Cloudflare Worker local state)
+.wrangler/
+worker/.wrangler/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# TypeScript build cache
+*.tsbuildinfo
