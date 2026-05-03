@@ -27,6 +27,7 @@ export const SITE = {
   github: 'https://github.com/KeguLu',
   cvUrl: null as string | null,   // e.g., '/cv/kegu-lu-cv.pdf' once uploaded
   photoUrl: null as string | null, // e.g., '/photo.jpg' once uploaded
+  roadmapImageUrl: `${import.meta.env.BASE_URL}images/KLuPhoto.jpeg`,
 
   // Homepage wording
   home: {

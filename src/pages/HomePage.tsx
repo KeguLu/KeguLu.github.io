@@ -37,7 +37,7 @@ function Hero() {
   return (
     <section className="mx-auto max-w-6xl px-6 lg:px-10 pt-16 sm:pt-24 pb-20 sm:pb-32">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        <div className="lg:col-span-8 animate-fade-up">
+        <div className="lg:col-span-7 animate-fade-up">
           <p className="font-mono text-xs font-medium uppercase tracking-ultra-wide text-ink-muted mb-6">
             {SITE.role} · {SITE.institution} · Industrial partner: {SITE.industryPartner}
           </p>
@@ -69,11 +69,33 @@ function Hero() {
           </div>
         </div>
 
-        <aside className="lg:col-span-4 lg:pt-4">
-          <PortraitOrMonogram />
+        <aside className="lg:col-span-5 lg:pt-4">
+          <HeroImagePreview />
         </aside>
       </div>
     </section>
+  );
+}
+
+function HeroImagePreview() {
+  if (!SITE.roadmapImageUrl) return <PortraitOrMonogram />;
+
+  return (
+    <figure className="w-full max-w-2xl lg:max-w-none">
+      <a
+        href={SITE.roadmapImageUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open the full hero image"
+        className="group block no-underline"
+      >
+        <img
+          src={SITE.roadmapImageUrl}
+          alt="Research profile image."
+          className="w-full aspect-[4/3] object-cover bg-surface rounded-sm border border-rule shadow-sm transition-transform duration-500 group-hover:scale-[1.01]"
+        />
+      </a>
+    </figure>
   );
 }
 
