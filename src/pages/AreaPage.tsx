@@ -19,15 +19,11 @@ export default function AreaPage() {
     if (!id) return;
     setState({ status: 'loading' });
 
-    // Find the .md file for this area via the manifest
     fetch(`${import.meta.env.BASE_URL}kb/manifest.json`)
       .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
       .then((m: { areas: { id: string; file: string }[] }) => {
-        const area = m.areas.find(a => a.id === id);
-        if (!area) throw new Error(`Area "${id}" not found in manifest`);
-        return fetch(`${import.meta.env.BASE_URL}kb/areas/${area.file}`);
+        return fetchAreaMarkdown(id, m.areas);
       })
-      .then(r => r.ok ? r.text() : Promise.reject(r.statusText))
       .then(raw => {
         const { frontmatter, body } = parseFrontmatter(raw);
         setState({ status: 'ready', frontmatter, body });
@@ -91,6 +87,35 @@ export default function AreaPage() {
       </div>
     </article>
   );
+}
+
+async function fetchAreaMarkdown(
+  id: string,
+  areas: { id: string; file: string }[],
+): Promise<string> {
+  const candidates = areaFileCandidates(id, areas);
+
+  for (const file of candidates) {
+    const resp = await fetch(`${import.meta.env.BASE_URL}kb/areas/${file}`);
+    if (resp.ok) return resp.text();
+  }
+
+  throw new Error(`Area "${id}" not found in manifest or kb/areas`);
+}
+
+function areaFileCandidates(id: string, areas: { id: string; file: string }[]): string[] {
+  const exact = areas.find(a => a.id === id);
+  const sameTopic = areas.find(a => stripLeadingNumber(a.id) === stripLeadingNumber(id));
+
+  return Array.from(new Set([
+    exact?.file,
+    `${id}.md`,
+    sameTopic?.file,
+  ].filter(Boolean) as string[]));
+}
+
+function stripLeadingNumber(value: string): string {
+  return value.replace(/^\d+-?/, '');
 }
 
 /* ------------------------------------------------------------------ */
