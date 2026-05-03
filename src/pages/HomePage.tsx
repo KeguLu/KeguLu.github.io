@@ -156,6 +156,8 @@ function About() {
 /* Research Areas                                                      */
 /* ------------------------------------------------------------------ */
 function ResearchAreas({ areas }: { areas: AreaManifestEntry[] | null }) {
+  const rows = areas ? arrangeAreasByNumber(areas, 4) : [];
+
   return (
     <section id="research" className="hairline-top">
       <div className="mx-auto max-w-6xl px-6 lg:px-10 py-20">
@@ -173,18 +175,36 @@ function ResearchAreas({ areas }: { areas: AreaManifestEntry[] | null }) {
             <li className="py-10 text-ink-faint font-mono text-sm">{SITE.home.loadingLabel}</li>
           )}
 
-          {areas?.map((a, i) => (
-            <AreaRow key={a.id} area={a} index={i + 1} />
-          ))}
-
-          {/* Placeholders for the other three upcoming areas */}
-          {Array.from({ length: Math.max(0, 4 - (areas?.length ?? 0)) }).map((_, i) => (
-            <PlaceholderRow key={`ph-${i}`} index={(areas?.length ?? 0) + i + 1} />
+          {areas && rows.map((area, i) => (
+            area
+              ? <AreaRow key={area.id} area={area} index={i + 1} />
+              : <PlaceholderRow key={`ph-${i}`} index={i + 1} />
           ))}
         </ol>
       </div>
     </section>
   );
+}
+
+function arrangeAreasByNumber(areas: AreaManifestEntry[], minRows: number): (AreaManifestEntry | null)[] {
+  const rows: (AreaManifestEntry | null)[] = Array.from({ length: minRows }, () => null);
+  const overflow: AreaManifestEntry[] = [];
+
+  for (const area of areas) {
+    const slot = leadingNumber(area.id) ?? leadingNumber(area.file);
+    if (slot && slot >= 1 && slot <= rows.length && rows[slot - 1] === null) {
+      rows[slot - 1] = area;
+    } else {
+      overflow.push(area);
+    }
+  }
+
+  return rows.concat(overflow);
+}
+
+function leadingNumber(value: string): number | null {
+  const match = value.match(/^(\d+)/);
+  return match ? Number(match[1]) : null;
 }
 
 function AreaRow({ area, index }: { area: AreaManifestEntry; index: number }) {

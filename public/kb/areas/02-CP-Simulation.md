@@ -1,5 +1,5 @@
 ---
-id: 01-CP-Simulation
+id: 02-CP-Simulation
 title: Investigating carbide characteristics effect on multiscale mechanical behavior of AISI 420 steel using crystal plasticity simulation
 period: 2022-2023
 status: published
@@ -115,6 +115,7 @@ To ensure cases share identical ferrite microstructure, each ferrite grain's cen
 
 - **Methodological: realistic direction-dependent virtual tensile testing.** Introduced the combined geometry + orientation rotation scheme for CP-RVE virtual tensile tests at different directions, replacing the incomplete orientation-only rotation used in prior work [35,36,53]. This is the core contribution implemented in the public `CP-Tensile-Different-Directions-Dream3D` repository.
 - **Broad multi-parameter carbide study.** First systematic CP-RVE study of AISI 420 steel that jointly varies four carbide characteristics (fraction at GBs, number, size, volume fraction) across 23 RVEs and 161 virtual tests, relating each to full stress-strain, work-hardening, anisotropy, and micromechanical field responses.
+- **PSO-CP-Callibration-Parameters.** The main idea is to search for ferrite crystal plasticity parameters that minimize the deviation between simulated and experimental stress-strain curves. 
 - **Empirical engineering equations.** Derived a linear relationship $Y = 0.0618\,X + 298.6$ (yield strength in MPa vs carbide fraction at GBs in %) and extended the Voce strain-hardening model into a closed-form prediction for tensile curves at arbitrary carbide volume fraction $V_{\mathrm{carbide}}$:
   - $Y = Y_0[1 + S\,V_{\mathrm{carbide}}] + Y_0(1 - V_{\mathrm{carbide}})$ with $Y_0 = 288.5\,\mathrm{MPa}, S = 0.98$ (shear-lag form)
   - $\sigma_s = 1472\,V_{\mathrm{carbide}} + 686$
