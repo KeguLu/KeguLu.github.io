@@ -29,8 +29,8 @@ workers_dev = true
 MAX_MONTHLY_TOKENS = "2000000"
 
 # Per-IP rate limits
-IP_LIMIT_PER_DAY = "30"
-IP_LIMIT_PER_MINUTE = "5"
+IP_LIMIT_PER_DAY = "40"
+IP_LIMIT_PER_MINUTE = "10"
 
 # CORS whitelist (comma-separated),http://localhost:5173
 ALLOWED_ORIGINS = "https://kegulu.github.io"

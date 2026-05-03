@@ -257,7 +257,7 @@ async function handleChat(
   }));
 
   const chatBaseUrl = env.CHAT_BASE_URL ?? env.DASHSCOPE_BASE_URL;
-  const chatApiKey = env.CHAT_API_KEY ?? env.DASHSCOPE_API_KEY;
+  const chatApiKey = env.CHAT_BASE_URL ? (env.CHAT_API_KEY ?? env.DASHSCOPE_API_KEY) : env.DASHSCOPE_API_KEY;
   const upstream = await fetch(`${chatBaseUrl}/chat/completions`, {
     method: 'POST',
     headers: {
