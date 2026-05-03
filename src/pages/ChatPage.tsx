@@ -57,7 +57,7 @@ export default function ChatPage() {
     try {
       // 1. embed → retrieve
       const queryVec = await embedQuery(query);
-      const retrieved = rankChunks(queryVec, { topK: 8, minSim: 0.25 });
+      const retrieved = rankChunks(queryVec, { topK: 10, minSim: 0.25 });
 
       // Attach sources to the assistant turn immediately so the sidebar shows them
       setTurns(prev => prev.map(t =>
