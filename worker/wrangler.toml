@@ -32,15 +32,16 @@ MAX_MONTHLY_TOKENS = "2000000"
 IP_LIMIT_PER_DAY = "30"
 IP_LIMIT_PER_MINUTE = "5"
 
-# CORS whitelist (comma-separated)
-ALLOWED_ORIGINS = "https://kegulu.github.io,http://localhost:5173"
+# CORS whitelist (comma-separated),http://localhost:5173
+ALLOWED_ORIGINS = "https://kegulu.github.io"
 
 # DashScope configuration (Singapore region)
 DASHSCOPE_BASE_URL = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
-MODEL_CHAT = "qwen-flash"
+#MODEL_CHAT = "qwen-flash"
 MODEL_EMBED = "text-embedding-v3"
 EMBED_DIMENSIONS = "1024"
-
+CHAT_BASE_URL = "https://api.deepseek.com"
+MODEL_CHAT = "deepseek-v4-pro"
 # --- KV namespace for rate limits + token counters ------------------
 # After running `wrangler kv namespace create "KV"`, paste the id here.
 [[kv_namespaces]]

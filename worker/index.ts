@@ -30,6 +30,8 @@ export interface Env {
   MODEL_EMBED: string;
   EMBED_DIMENSIONS?: string;
   DASHSCOPE_BASE_URL: string;
+  CHAT_BASE_URL?: string;   // 加这行
+  CHAT_API_KEY?: string;    // 加这行
 }
 
 type EmbedRequest = {
@@ -201,10 +203,10 @@ async function handleEmbed(
     payload.dimensions = Number(env.EMBED_DIMENSIONS);
   }
 
-  const upstream = await fetch(`${env.DASHSCOPE_BASE_URL}/embeddings`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${env.DASHSCOPE_API_KEY}`,
+const upstream = await fetch(`${env.DASHSCOPE_BASE_URL}/embeddings`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.DASHSCOPE_API_KEY}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
@@ -254,10 +256,12 @@ async function handleChat(
     content: String(m.content ?? '').slice(0, 8000),
   }));
 
-  const upstream = await fetch(`${env.DASHSCOPE_BASE_URL}/chat/completions`, {
+  const chatBaseUrl = env.CHAT_BASE_URL ?? env.DASHSCOPE_BASE_URL;
+  const chatApiKey = env.CHAT_API_KEY ?? env.DASHSCOPE_API_KEY;
+  const upstream = await fetch(`${chatBaseUrl}/chat/completions`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${env.DASHSCOPE_API_KEY}`,
+      'Authorization': `Bearer ${chatApiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
